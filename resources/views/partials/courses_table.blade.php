@@ -1,3 +1,5 @@
+
+
 <table class="mb-20 w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-400 dark:text-gray-800">
         <tr>
@@ -9,6 +11,9 @@
             </th>
             <th scope="col" class="px-6 py-3">
                 Available Spots
+            </th>
+            <th scope="col" class="px-6 py-3">
+                Created by
             </th>
             <th scope="col" class="px-6 py-3">
                 Edit
@@ -26,12 +31,15 @@
                     {{ ucfirst($course->name) }}
                 </th>
                 <td class="px-6 py-4">
-                    @foreach ($modules as $module)
+                    @foreach (\App\Models\Module::all() as $module)
                         {{ $course->id === $module->id ? ucfirst($course->modules) : null }}
                     @endforeach
                 </td>
                 <td class="px-6 py-4">
                     {{ ucfirst($course->available_spots) }}
+                </td>
+                <td class="px-6 py-4">
+                  <a href="/?users/{{ $course->user->name }}">{{ ucfirst($course->user->name) }}</a>  
                 </td>
                 <td class="px-6 py-4">
                     <button class="table-btn px-4 py-2 text-black border rounded">

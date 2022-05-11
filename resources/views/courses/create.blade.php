@@ -27,7 +27,7 @@
                 </div>
         
                 <div class="field">
-                    <label class="label" for="name">Available Spots</label>
+                    <label class="label" for="available_spots">Available Spots</label>
         
                     <div class="control">
                         <input 
@@ -46,10 +46,10 @@
                     <label class="label" for="modules">Modules</label>
         
                     <div class="control">
-                        @foreach ($modules as $module)
-                            <tr>
-                                <th>{{ ucfirst($module->name) }}</th>
-                                <td>
+                        @foreach (\App\Models\Module::all() as $module)
+                            <div class="grid grid-cols-2">
+                                <span>{{ ucfirst($module->name) }}</span>
+                                <div class="col-span-1">
                                     <input
                                         type="checkbox" 
                                         name="modules[]"
@@ -60,8 +60,8 @@
                                             checked
                                         @endif
                                     >
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         @endforeach 
                     </div>
                 </div>

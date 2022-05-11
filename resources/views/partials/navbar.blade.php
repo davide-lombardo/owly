@@ -1,5 +1,5 @@
 <nav class="flex justify-between items-center mb-4">
-    <h1 class="font-bold text-3xl">
+    <h1 class="font-bold text-3xl ml-5">
         <a href="/"><i class="ml-3 fa-solid fa-graduation-cap"></i>
             Owly
         </a>

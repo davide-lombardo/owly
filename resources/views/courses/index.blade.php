@@ -3,9 +3,12 @@
         <h1 class="title">Courses List</h1>
     </div>
 
+    <div class="relative lg:inline-flex bg-gray-100 rounded-xl mb-5 ">
+        <x-module-dropdown />
+    </div>
+
     @include('partials.courses_table')
 
-    @include('partials.sidebar') 
-
+    {{ $courses->links()}}
 </x-layout>
 
