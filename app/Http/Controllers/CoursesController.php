@@ -13,20 +13,14 @@ class CoursesController extends Controller
     public function index()
     {
 
-    // $modules = Module::latest()->filter(request(['module']))->get();
+        // $courses = Course::latest();
+        // $modules = Module::all();
 
-    // $courses = Course::query();
+        return view("courses.index", [
+            'courses' => Course::latest()->filter(
+                request(['module', 'user']))->paginate(3)
+        ]);
 
-    // if ($request->filled('module_id')) {
-    //     $courses->where('module_id', $request->input('module_id'));
-    // }
-
-
-        $modules = Module::all();
-
-        $courses = Course::all();
-
-        return view("courses.index", compact('courses', 'modules'));
     }
 
     public function create()
@@ -80,11 +74,12 @@ class CoursesController extends Controller
             abort(403, 'Unauthorized Action');
         }
 
-        $validated = $request->validate([
+        $formFields = $request->validate([
             'name' => 'required',
             'modules' => 'required',
             'available_spots' => 'required'
         ]);
+
 
         return redirect('/')->with('success', 'Course Successfully Updated!');
 

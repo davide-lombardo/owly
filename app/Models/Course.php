@@ -10,28 +10,36 @@ class Course extends Model
     use HasFactory;
     
     protected $guarded = [];
+    protected $with = ['modules', 'user'];
     public $timestamps = false;
     
-    //filter by module from request
+
     public function scopeFilter($query, array $filters) 
     {
-        if($filters['module'] ?? false) {
-            $query->where('modules', 'like', '%' . request('module') . '%');
-        }
+     
+        $query->when($filters['modules'] ?? false, fn($query, $module) =>
+            $query->whereHas('module', fn($query) => 
+                $query->where('name', $module)
+            )
+        );
+
+        $query->when($filters['user'] ?? false, fn($query, $user) =>
+            $query->whereHas('user', fn($query) => 
+                $query->where('name', $user)
+            )
+        );
+    }
+
+
+    //BINDINGS
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function modules()
     {
-        return $this->hasMany(Module::class);
+        return $this->belongsToMany(Module::class);
     }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function addModule($module)
-    {
-        $this->modules()->create($module);
-    }
+    
 }

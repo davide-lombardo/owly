@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 
 
 //ALL COURSES
-Route::get('/', [CoursesController::class, 'index']);
+Route::get('/', [CoursesController::class, 'index'])->name('home');
 
 //SHOW COURSES/CREATE FORM
 Route::get('/courses/create', [CoursesController::class, 'create'])->middleware('auth');
@@ -16,13 +16,13 @@ Route::get('/courses/create', [CoursesController::class, 'create'])->middleware(
 Route::post('/courses', [CoursesController::class, 'store'])->middleware('auth');
 
 //SHOW COURSES EDIT FORM
-Route::get('/courses/{course}/edit', [CoursesController::class, 'edit'])->middleware('auth');
+Route::get('/courses/{course-id}/edit', [CoursesController::class, 'edit'])->middleware('auth');
 
 //UPDATE COURSE
-Route::patch('/courses/{course}', [CoursesController::class, 'update'])->middleware('auth');
+Route::put('/courses/{course-id}', [CoursesController::class, 'update'])->middleware('auth');
 
 //DELETE COURSE
-Route::delete('/courses/{course}', [CoursesController::class, 'destroy'])->middleware('auth');
+Route::delete('/courses/{course-id}', [CoursesController::class, 'destroy'])->middleware('auth');
 
 //MANAGE COURSES
 Route::get('/courses/manage', [CoursesController::class, 'manage'])->middleware('auth');

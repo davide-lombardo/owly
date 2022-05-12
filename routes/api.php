@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CoursesController;
-use App\Http\Controllers\CourseModulesController;
+use App\Http\Controllers\API\CoursesController;
+use App\Http\Controllers\API\CoursesModulesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,19 +20,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('courses', [CoursesController::class]);
+// Route::resource('courses', [CoursesController::class]);
 
-// Route::get('/courses', [CoursesController::class, 'index']);
-// Route::post('/courses/store', [CoursesController::class, 'store']);
-// Route::get('/courses/{course}', [CoursesController::class, 'show']);
-// Route::patch('/courses/{course}/update', [CoursesController::class, 'update']);
-// Route::delete('/courses/{course}/delete', [CoursesController::class, 'destroy']);
+Route::get('/courses', [CoursesController::class, 'index']);
+Route::post('/courses/store', [CoursesController::class, 'store']);
+Route::get('/courses/{course-id}', [CoursesController::class, 'show']);
+Route::put('/courses/{course-id}/update', [CoursesController::class, 'update']);
+Route::delete('/courses/{course-id}/delete', [CoursesController::class, 'destroy']);
 
-// Route::get('/modules', [CoursesModulesController::class, 'index']);
-// Route::post('/modules/store', [CoursesModulesController::class, 'store']);
-// Route::get('/modules/{course}', [CoursesModulesController::class, 'show']);
-// Route::patch('/modules/{course}/update', [CoursesModulesController::class, 'update']);
-// Route::delete('/modules/{course}/delete', [CoursesModulesController::class, 'destroy']);
+Route::get('/modules', [CoursesModulesController::class, 'index']);
+Route::post('/modules/store', [CoursesModulesController::class, 'store']);
+Route::get('/modules/{module-id}', [CoursesModulesController::class, 'show']);
+Route::put('/modules/{module-id}/update', [CoursesModulesController::class, 'update']);
+Route::delete('/modules/{module-id}/delete', [CoursesModulesController::class, 'destroy']);
 
 
-//Route::apiResource('courses', [CoursesController::class])->only(['index', 'show']);

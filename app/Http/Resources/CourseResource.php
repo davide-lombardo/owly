@@ -6,6 +6,14 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CourseResource extends JsonResource
 {
+
+    /**
+     * The "data" wrapper that should be applied.
+     *
+     * @var string
+     */
+    public static $wrap = 'course';
+
     /**
      * Transform the resource into an array.
      *
@@ -14,21 +22,19 @@ class CourseResource extends JsonResource
      */
     public function toArray($request)
     {
-        $modulesStr = '';
-        foreach($this->modules as $module) {
-            $modulesStr .= module->$module;
-            if($this->modules->last() != $module) {
-                $modulesStr .= ', ';
-            }
-        }
 
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'availableSpots' => $this->availableSpots,
-            'modules' => $this->modules->implode('name', ', ')
+            'id' => (string)$this->id,
+            'type' => 'Courses',
+            'attributes' => [
+                'name' => $this->name,
+                'availableSpots' => $this->availableSpots,
+                'modules' => $this->modules->implode('name', ', '),
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at
+            ]
         ];
 
-        return parent::toArray($request);
     }
+
 }

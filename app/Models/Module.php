@@ -12,10 +12,11 @@ class Module extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    public function course() 
+    //BINDINGS
+    public function courses() 
     {
 
-        return $this->belongsTo(Course::class, 'modules_id');
+        return $this->belongsToMany(Course::class);
 
     }
 
