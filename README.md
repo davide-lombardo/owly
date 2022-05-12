@@ -10,7 +10,7 @@
 
   <p align="center">
     This is a project I developed using Laravel and MySQL. Owly is a fictional startup whose aim is to make complementary paths to primary learning, developing cross-functional courses that can involve multiple subjects, thus thriving the curiosity of the little ones.
-    The application allows the user to authenticate and either filter / create / update / delete courses and modules.
+    The application allows CRUD methods.
   </p>
 
   <br>
@@ -58,24 +58,6 @@
 
 User can perform various actions:
 
-<ul>
-<li><strong>GET</strong> requests to access bonuses and categories</li>
-<li><strong>GET</strong> requests with params to filter courses by modules</li>
-<li><strong>POST</strong> requests to create courses and modules</li>
-<li><strong>PATCH</strong> requests to update courses</li>
-<li><strong>DELETE</strong> requests to delete courses </li>
-</ul>
-
-REST API project section endpoints:
-
-<ul>
-<li><strong>GET</strong> /courses</li>
-<li><strong>GET</strong> /courses/{course}</li>
-<li><strong>POST</strong> /courses/store</li>
-<li><strong>PATCH</strong> /courses/{course}/update</li>
-<li><strong>DELETE</strong> /bonuses/{course}/delete</li>
-<li><strong>POST</strong> /modules/store</li>
-</ul>
 
 ### Built With
 
