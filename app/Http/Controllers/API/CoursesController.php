@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CourseResource;
-use Illuminate\Http\Request;
-
-use App\Models\Module;
 use App\Models\Course;
+use Illuminate\Http\Request;
 
 class CoursesController extends Controller
 {
@@ -19,14 +16,6 @@ class CoursesController extends Controller
     public function index()
     {
         return Course::all();
-        // $courses = Course::all();
-        // return CourseResource::collection($courses);
-
-        // if(count($courses) > 0){
-        //     return $response->sendResponse($courseData, "Courses Successfully Found.");  
-        // }else{
-        //     return $response->sendResponse($courseData, "Courses list is empty.");  
-        // } 
     }
 
 
@@ -53,9 +42,9 @@ class CoursesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        $course = Course::find($id);
+        return $course;
     }
 
     /**
@@ -79,17 +68,10 @@ class CoursesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
-        return Course::destroy($id);
-        
-        $course = Course::find($id);
+        $course->delete();
 
-        // if($course){
-        //     $courseData = ["course" => $course];
-        //     return $response->sendResponse($courseData, "Course Successfully Deleted.", 200);    
-        // } else {
-        //     return $response->sendError('Resource Not Found Error.', "Can't delete the resource. Course with the id of $id not found"); 
-        // }
+        return response()->json(null, 204);
     }
 }

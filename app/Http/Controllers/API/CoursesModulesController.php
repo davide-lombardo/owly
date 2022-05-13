@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\API\ResponseController;
+use App\Models\Module;
 use Illuminate\Http\Request;
 
-use App\Models\Module;
-use App\Models\Course;
 
 class CoursesModulesController extends Controller
 {
@@ -43,9 +41,9 @@ class CoursesModulesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Module $module)
     {
-        return Module::find($id);
+        return $module;
     }
 
 
@@ -70,10 +68,10 @@ class CoursesModulesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Module $module)
     {
-        return Module::destroy($id);
-        
-        $module = Module::find($id);
+        $module->delete();
+
+        return response()->json(null, 204);
     }
 }

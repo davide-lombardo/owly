@@ -9,11 +9,6 @@ use App\Models\Course;
 
 class CourseModulesController extends Controller
 {
-    // public function index()
-    // {
-    //     $categories = Module::all();
-    //     return view("modules.index", compact("modules"));
-    // }
 
     
     public function create() 
